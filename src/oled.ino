@@ -65,8 +65,8 @@ void setup()   {
   // Show image buffer on the display hardware.
   // Since the buffer is intialized with an Adafruit splashscreen
   // internally, this will display the splashscreen.
-  display.display();
-  delay(2000);
+  //display.display();
+  //delay(2000);
 
   // Clear the buffer.
   display.clearDisplay();
@@ -183,21 +183,24 @@ void countdown() {
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
-  display.setCursor(0,0);
+  display.setCursor(0,32);
   display.print("starting countdown");
   display.display();
   delay(2000);
 
-  for (int8_t mm = 0; mm >= 0; mm--) {
+  for (int8_t mm = 2; mm >= 0; mm--) {
     for (int8_t sec = 59; sec >= 0; sec--) {
 
       display.clearDisplay();
       display.setTextSize(4);
       display.setTextColor(WHITE);
-      display.setCursor(0,0);
+      display.setCursor(20,20);
 
       display.print(mm);
       display.print(":");
+      if (sec < 10) {
+        display.print("0");
+      }
       display.print(sec);
       display.display();
       delay(1);
@@ -205,18 +208,22 @@ void countdown() {
   }
   display.clearDisplay();
   display.setTextSize(3);
-  display.print("KABUMM!");
+  display.setCursor(10,25);
+  display.print("KABUMM");
   display.display();
   for (byte i = 0; i < 10; i++) {
-    delay(500);
+    delay(50);
     display.invertDisplay(true);
-    delay(500);
+    delay(50);
     display.invertDisplay(false);
   }
   display.clearDisplay();
   display.setTextSize(1);
   display.setCursor(0,32);
   display.print("the end...");
+  display.display();
+  delay(10000);
+  display.clearDisplay();
   display.display();
 }
 
